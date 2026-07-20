@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Serif+4:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <main class="sheet">
+
+    <!-- Docket / stub panel -->
+    <aside class="docket">
+
+      <h1 class="docket__title">Student<br>Registration</h1>
+      <p class="docket__sub">Enrollment intake &amp; document filing</p>
+
+      <dl class="docket__meta">
+        <div>
+        </div>
+        <div>
+          <dt>Required</dt>
+          <dd>ID · Name · Photo · Certificate</dd>
+        </div>
+      </dl>
+
+      <ol class="docket__steps">
+        <li data-step="id">Identify the student</li>
+        <li data-step="photo">Attach a photo</li>
+        <li data-step="certificate">File the certificate</li>
+      </ol>
+
+      <p class="docket__note">Everything below is filed together as one record — nothing is saved until you submit.</p>
+    </aside>
+
+    <!-- Form panel -->
+    <section class="form-panel">
+
+      <form id="regForm" action="/upload" method="POST" enctype="multipart/form-data" novalidate>
+
+        <fieldset class="field-group">
+          <legend>Identification</legend>
+
+          <div class="field">
+            <label for="studentID">Student ID</label>
+            <input
+              type="text"
+              id="studentID"
+              name="studentID"
+              class="mono"
+              placeholder="e.g. 2023-10234"
+              pattern="^[A-Za-z0-9\-]{4,20}$"
+              autocomplete="off"
+              required>
+            <span class="field__hint">Letters, numbers, and dashes only</span>
+            <span class="field__error">Enter a valid student ID</span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="firstName">First name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Juana" required>
+              <span class="field__error">First name is required</span>
+            </div>
+            <div class="field">
+              <label for="lastName">Last name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Dela Cruz" required>
+              <span class="field__error">Last name is required</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="field-group">
+          <legend>Attachments</legend>
+
+          <div class="dropzone" data-target="photo">
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+            <label for="photo" class="dropzone__label">
+              <span class="dropzone__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2L8.5 5h7L16.5 7h2A1.5 1.5 0 0 1 20 8.5v10A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </span>
+              <span class="dropzone__text">
+                <strong>Student photo</strong>
+                <small>Click or drop a JPG/PNG</small>
+              </span>
+              <span class="dropzone__filename" data-empty="No file attached">No file attached</span>
+            </label>
+            <img class="dropzone__preview" alt="" hidden>
+          </div>
+
+          <div class="dropzone" data-target="certificate">
+            <input type="file" id="certificate" name="certificate" accept=".pdf,.jpg,.jpeg,.png" required>
+            <label for="certificate" class="dropzone__label">
+              <span class="dropzone__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 3.5h7L18 7v13.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 3.5V7h4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </span>
+              <span class="dropzone__text">
+                <strong>Certificate</strong>
+                <small>PDF, JPG, or PNG</small>
+              </span>
+              <span class="dropzone__filename" data-empty="No file attached">No file attached</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-footer">
+          <p class="form-footer__note">By submitting, the record is written to the registration ledger.</p>
+          <button type="submit" id="submitBtn">
+            <span class="btn-label">File registration</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

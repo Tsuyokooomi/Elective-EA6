@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Filed — Student Registration System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Serif+4:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <main class="sheet sheet--receipt">
+
+    <aside class="docket docket--stamped">
+      
+      <h1 class="docket__title">Filed &amp;<br>Recorded</h1>
+      <p class="docket__sub">This record is now in the ledger.</p>
+      <div class="stamp" aria-hidden="true">RECEIVED</div>
+    </aside>
+
+    <section class="form-panel">
+
+      <div class="receipt">
+        <dl class="receipt__row">
+          <dt>Student ID</dt>
+          <dd class="mono"><%= student.studentID %></dd>
+        </dl>
+        <dl class="receipt__row">
+          <dt>Name</dt>
+          <dd><%= student.firstName %> <%= student.lastName %></dd>
+        </dl>
+        <dl class="receipt__row">
+          <dt>Filed</dt>
+          <dd><%= student.uploadDate.toLocaleString() %></dd>
+        </dl>
+      </div>
+
+      <div class="receipt__attachments">
+        <% if (student.photo) { %>
+        <figure class="attachment">
+          <img src="/uploads/<%= student.photo %>" alt="Photo of <%= student.firstName %> <%= student.lastName %>">
+          <figcaption>
+            <span>Student photo</span>
+            <a href="/uploads/<%= student.photo %>" target="_blank" rel="noopener">View original</a>
+          </figcaption>
+        </figure>
+        <% } %>
+
+        <% if (student.certificate) { %>
+        <div class="attachment attachment--doc">
+          <span class="attachment__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="26" height="26"><path d="M7 3.5h7L18 7v13.5a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4.5a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 3.5V7h4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </span>
+          <div>
+            <span>Certificate</span>
+            <a href="/uploads/<%= student.certificate %>" target="_blank" rel="noopener">View certificate</a>
+          </div>
+        </div>
+        <% } %>
+      </div>
+
+      <div class="form-footer">
+        <p class="form-footer__note">Keep this confirmation for your records.</p>
+        <a class="button-link" href="/">Register another student</a>
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
